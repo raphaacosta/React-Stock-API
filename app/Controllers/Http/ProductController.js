@@ -20,7 +20,7 @@ class ProductController {
    * @param {View} ctx.view
    */
   async index () {
-    const products = await Product.all()
+    const products = await Product.all();
 
     return products;
   }
