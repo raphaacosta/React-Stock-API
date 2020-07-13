@@ -20,5 +20,5 @@ Route.post('/login', 'AuthController.login');
 Route.post('/authenticate', 'AuthController.authenticate');
 
 Route.group(() => {
-  Route.resource('products', 'ProductController').apiOnly().except('update');
+  Route.resource('products', 'ProductController');
 }).middleware('auth');
