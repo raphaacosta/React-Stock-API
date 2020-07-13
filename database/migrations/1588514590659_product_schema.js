@@ -7,6 +7,9 @@ class ProductSchema extends Schema {
   up () {
     this.create('products', (table) => {
       table.increments()
+      table.string('name').notNullable();
+      table.integer('amount').notNullable();
+      table.decimal('value').notNullable();
       table
         .integer('user_id')
         .unsigned()
@@ -15,9 +18,6 @@ class ProductSchema extends Schema {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      table.string('name').notNullable();
-      table.integer('amount').notNullable();
-      table.decimal('value').notNullable();
       table.timestamps();
     });
   }
