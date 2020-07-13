@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Product = use('App/Models/Product');
+// const Database = use('Database');
 
 /**
  * Resourceful controller for interacting with products
@@ -64,6 +65,17 @@ class ProductController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const data = request.all();
+    const product = await Product.findOrFail(params.id);
+
+    if(!product) {
+      return response.status(404).send({ message: 'Product not found' });
+    }
+
+    product.merge(data);
+    await product.save();
+
+    return product;
   }
 
   /**
